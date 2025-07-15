@@ -51,3 +51,55 @@ const ramos = [
   { codigo: "MVET696", nombre: "Electivo Profesional II", prereqs: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"], semestre: "10° Semestre" },
   { codigo: "MVET697", nombre: "Internado", prereqs: ["MVET693", "MVET691"], semestre: "10° Semestre" }
 ];
+const estadoRamos = {};
+const contenedor = document.getElementById("contenedor");
+
+const semestres = [...new Set(ramos.map(r => r.semestre))];
+
+semestres.forEach(sem => {
+  const semDiv = document.createElement("div");
+  semDiv.className = "semestre";
+  semDiv.innerHTML = `<h2>${sem}</h2>`;
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  ramos.filter(r => r.semestre === sem).forEach(ramo => {
+    const div = document.createElement("div");
+    div.className = "ramo";
+    div.textContent = ramo.nombre;
+    div.id = ramo.codigo;
+    div.onclick = () => toggleRamo(ramo);
+    estadoRamos[ramo.codigo] = { aprobado: false, prereqs: ramo.prereqs };
+    grid.appendChild(div);
+  });
+
+  semDiv.appendChild(grid);
+  contenedor.appendChild(semDiv);
+});
+
+function toggleRamo(ramo) {
+  const estado = estadoRamos[ramo.codigo];
+  const div = document.getElementById(ramo.codigo);
+  if (div.classList.contains("bloqueado")) return;
+
+  estado.aprobado = !estado.aprobado;
+  div.classList.toggle("aprobado", estado.aprobado);
+
+  actualizarEstado();
+}
+
+function actualizarEstado() {
+  ramos.forEach(ramo => {
+    const div = document.getElementById(ramo.codigo);
+    const estado = estadoRamos[ramo.codigo];
+    const requisitosCumplidos = estado.prereqs.every(pr => estadoRamos[pr]?.aprobado);
+    if (!estado.aprobado && !requisitosCumplidos) {
+      div.classList.add("bloqueado");
+    } else {
+      div.classList.remove("bloqueado");
+    }
+  });
+}
+
+actualizarEstado();
+```
