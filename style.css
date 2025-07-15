@@ -1,1 +1,35 @@
+const contenedor = document.getElementById("contenedor");
+
+    for (const [año, semestres] of Object.entries(malla)) {
+      const añoDiv = document.createElement("div");
+      añoDiv.className = "año";
+      añoDiv.innerHTML = `<h2>${año}</h2>`;
+
+      for (const [sem, ramos] of Object.entries(semestres)) {
+        const semDiv = document.createElement("div");
+        semDiv.className = "semestre";
+        semDiv.innerHTML = `<h3>${sem}</h3>`;
+
+        const grid = document.createElement("div");
+        grid.className = "grid";
+
+        for (const ramo of ramos) {
+          const item = document.createElement("div");
+          item.className = "item";
+          item.textContent = ramo.codigo;
+          item.onclick = () => {
+            alert(`🧠 ${ramo.nombre}\n🎓 Créditos: ${ramo.creditos}\n🔗 Prerrequisitos: ${ramo.prerequisitos || 'Ninguno'}`);
+          };
+          grid.appendChild(item);
+        }
+
+        semDiv.appendChild(grid);
+        añoDiv.appendChild(semDiv);
+      }
+
+      contenedor.appendChild(añoDiv);
+    }
+  </script>
+</body>
+</html>
 
