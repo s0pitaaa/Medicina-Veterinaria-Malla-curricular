@@ -1,5 +1,3 @@
-### 3. `script.js`
-```javascript
 const ramos = [
   { codigo: "BIOL034", nombre: "Biología Celular", prereqs: [], semestre: "1° Semestre" },
   { codigo: "BIOL035", nombre: "Lab. Biología Celular", prereqs: [], semestre: "1° Semestre" },
