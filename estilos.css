@@ -1,0 +1,28 @@
+### 2. `estilos.css`
+.ramo {
+  background-color: #f8d7fa;
+  border: 2px solid #d63384;
+  border-radius: 12px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.ramo:hover {
+  background-color: #f3b6e3;
+  transform: scale(1.03);
+}
+
+.ramo.aprobado {
+  background-color: #caffd4;
+  border-color: #198754;
+  color: #155724;
+}
+
+.ramo.bloqueado {
+  background-color: #f8f9fa;
+  border-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+}
+```
