@@ -1,106 +1,124 @@
 const ramos = [
-  { codigo: "BIOL034", nombre: "Biología Celular", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "BIOL035", nombre: "Lab. Biología Celular", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "DEBD221", nombre: "Zoología", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "FMMP003", nombre: "Matemática", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "MVET611", nombre: "Introducción a la Medicina Veterinaria", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "QUI002", nombre: "Química", prereqs: [], semestre: "1° Semestre" },
-  { codigo: "BIOL166", nombre: "Bioquímica", prereqs: ["BIOL034", "BIOL035", "QUI002"], semestre: "2° Semestre" },
-  { codigo: "CEGHC11", nombre: "Habilidades Comunicativas", prereqs: [], semestre: "2° Semestre" },
-  { codigo: "ING119", nombre: "Inglés I", prereqs: [], semestre: "2° Semestre" },
-  { codigo: "MVET621", nombre: "ADO I", prereqs: ["BIOL034", "BIOL035"], semestre: "2° Semestre" },
-  { codigo: "MVET622", nombre: "Cuerpo Animal I", prereqs: ["BIOL034", "BIOL035", "DEBD221"], semestre: "2° Semestre" },
-  { codigo: "DEBD130", nombre: "Métodos Cuantitativos RR.NN", prereqs: ["FMMP003"], semestre: "3° Semestre" },
-  { codigo: "ING129", nombre: "Inglés II", prereqs: ["ING119"], semestre: "3° Semestre" },
-  { codigo: "MVET631", nombre: "ADO II", prereqs: ["BIOL166", "MVET621"], semestre: "3° Semestre" },
-  { codigo: "MVET632", nombre: "Cuerpo Animal II", prereqs: ["MVET622"], semestre: "3° Semestre" },
-  { codigo: "MVET633", nombre: "FDO I", prereqs: ["MVET622"], semestre: "3° Semestre" },
-  { codigo: "DEBD140", nombre: "Ecología General", prereqs: ["DEBD130"], semestre: "4° Semestre" },
-  { codigo: "ING239", nombre: "Inglés III", prereqs: ["ING129"], semestre: "4° Semestre" },
-  { codigo: "MVET178", nombre: "Genética", prereqs: ["DEBD130", "BIOL166"], semestre: "4° Semestre" },
-  { codigo: "MVET240", nombre: "Anatomía Clínica", prereqs: ["MVET632", "MVET633"], semestre: "4° Semestre" },
-  { codigo: "MVET641", nombre: "FDO II", prereqs: ["MVET633", "MVET631"], semestre: "4° Semestre" },
-  { codigo: "DEBD160", nombre: "Biología de la Conservación", prereqs: ["DEBD140"], semestre: "5° Semestre" },
-  { codigo: "ING249", nombre: "Inglés IV", prereqs: ["ING239"], semestre: "5° Semestre" },
-  { codigo: "MVET192", nombre: "Farmacología", prereqs: ["MVET641"], semestre: "5° Semestre" },
-  { codigo: "MVET340", nombre: "Enfermedades de Org. Acuáticos", prereqs: ["MVET631"], semestre: "5° Semestre" },
-  { codigo: "MVET651", nombre: "Anatomía Patológica", prereqs: ["MVET632", "MVET641"], semestre: "5° Semestre" },
-  { codigo: "MVET652", nombre: "Nutrición y Alimentación Animal", prereqs: ["MVET240"], semestre: "5° Semestre" },
-  { codigo: "CEGCT12", nombre: "Razonamiento Científico", prereqs: ["CEGHC11"], semestre: "6° Semestre" },
-  { codigo: "MVET230", nombre: "Patología Clínica", prereqs: ["MVET240", "MVET641"], semestre: "6° Semestre" },
-  { codigo: "MVET310", nombre: "Imagenología", prereqs: ["MVET651"], semestre: "6° Semestre" },
-  { codigo: "MVET440", nombre: "Epidemiología y Salud Pública", prereqs: ["DEBD130", "MVET641"], semestre: "6° Semestre" },
-  { codigo: "MVET661", nombre: "Reproducción", prereqs: ["MVET633", "MVET632"], semestre: "6° Semestre" },
-  { codigo: "DEBD161", nombre: "Manejo de Fauna Silvestre", prereqs: ["DEBD160", "MVET633"], semestre: "7° Semestre" },
-  { codigo: "IAMB662", nombre: "Legislación y Eval. Ambiental", prereqs: ["DEBD140", "DEBD160"], semestre: "7° Semestre" },
-  { codigo: "MVET671", nombre: "Inocuidad de Alimentos", prereqs: ["MVET440"], semestre: "7° Semestre" },
-  { codigo: "MVET673", nombre: "Medicina", prereqs: ["MVET641", "MVET240", "MVET192"], semestre: "7° Semestre" },
-  { codigo: "MVET674", nombre: "Sistemas de Producción Animal", prereqs: ["MVET652", "MVET661", "MVET340"], semestre: "7° Semestre" },
-  { codigo: "DEBD180", nombre: "Formulación Proyectos RRNN", prereqs: ["IAMB662"], semestre: "8° Semestre" },
-  { codigo: "MVET280", nombre: "Cirugía", prereqs: ["MVET673", "MVET310"], semestre: "8° Semestre" },
-  { codigo: "MVET370", nombre: "Zoonosis y Enf. Emergentes", prereqs: ["MVET671"], semestre: "8° Semestre" },
-  { codigo: "MVET681", nombre: "Patobiología Molecular", prereqs: ["MVET230"], semestre: "8° Semestre" },
-  { codigo: "MVET682", nombre: "Práctica Profesional", prereqs: ["MVET310", "MVET673"], semestre: "8° Semestre" },
-  { codigo: "CEGPC13", nombre: "Pensamiento Crítico", prereqs: ["CEGCT12", "CEGHC11"], semestre: "9° Semestre" },
-  { codigo: "MVET691", nombre: "Ética y Bienestar Animal", prereqs: ["MVET674", "DEBD161"], semestre: "9° Semestre" },
-  { codigo: "MVET692", nombre: "Innovación y Transferencia", prereqs: ["DEBD180"], semestre: "9° Semestre" },
-  { codigo: "MVET693", nombre: "Clínica", prereqs: ["MVET280", "MVET230"], semestre: "9° Semestre" },
-  { codigo: "MVET694", nombre: "Proyecto de Título", prereqs: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"], semestre: "9° Semestre" },
-  { codigo: "CEGRS14", nombre: "Responsabilidad Social", prereqs: ["CEGPC13"], semestre: "10° Semestre" },
-  { codigo: "MVET695", nombre: "Electivo Profesional I", prereqs: ["MVET370", "MVET681", "DEBD180", "MVET682", "MVET693"], semestre: "10° Semestre" },
-  { codigo: "MVET696", nombre: "Electivo Profesional II", prereqs: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"], semestre: "10° Semestre" },
-  { codigo: "MVET697", nombre: "Internado", prereqs: ["MVET693", "MVET691"], semestre: "10° Semestre" }
+  // 1° Semestre
+  { codigo: "BIOL034", nombre: "Biología Celular", semestre: 1, creditos: 8, prerequisitos: [] },
+  { codigo: "BIOL035", nombre: "Laboratorio de Biocelular", semestre: 1, creditos: 5, prerequisitos: [] },
+  { codigo: "DEBD221", nombre: "Zoología", semestre: 1, creditos: 6, prerequisitos: [] },
+  { codigo: "FMMP003", nombre: "Matemática", semestre: 1, creditos: 7, prerequisitos: [] },
+  { codigo: "MVET611", nombre: "Introducción a la Medicina Veterinaria", semestre: 1, creditos: 4, prerequisitos: [] },
+  { codigo: "QUI002", nombre: "Química", semestre: 1, creditos: 8, prerequisitos: [] },
+
+  // 2° Semestre
+  { codigo: "BIOL166", nombre: "Bioquímica", semestre: 2, creditos: 8, prerequisitos: ["BIOL034", "BIOL035", "QUI002"] },
+  { codigo: "CEGHC11", nombre: "Habilidades Comunicativas", semestre: 2, creditos: 8, prerequisitos: [] },
+  { codigo: "ING119", nombre: "Inglés I", semestre: 2, creditos: 12, prerequisitos: [] },
+  { codigo: "MVET621", nombre: "ADO I", semestre: 2, creditos: 18, prerequisitos: ["BIOL034", "BIOL035"] },
+  { codigo: "MVET622", nombre: "Cuerpo Animal I", semestre: 2, creditos: 19, prerequisitos: ["BIOL034", "BIOL035", "DEBD221"] },
+
+  // 3° Semestre
+  { codigo: "DEBD130", nombre: "Métodos Cuantitativos RRNN", semestre: 3, creditos: 9, prerequisitos: ["FMMP003"] },
+  { codigo: "ING129", nombre: "Inglés II", semestre: 3, creditos: 12, prerequisitos: ["ING119"] },
+  { codigo: "MVET631", nombre: "ADO II", semestre: 3, creditos: 15, prerequisitos: ["BIOL166", "MVET621"] },
+  { codigo: "MVET632", nombre: "Cuerpo Animal II", semestre: 3, creditos: 14, prerequisitos: ["MVET622"] },
+  { codigo: "MVET633", nombre: "FDO I", semestre: 3, creditos: 15, prerequisitos: ["MVET622"] },
+
+  // 4° Semestre
+  { codigo: "DEBD140", nombre: "Ecología General", semestre: 4, creditos: 8, prerequisitos: ["DEBD130"] },
+  { codigo: "ING239", nombre: "Inglés III", semestre: 4, creditos: 12, prerequisitos: ["ING129"] },
+  { codigo: "MVET178", nombre: "Genética", semestre: 4, creditos: 6, prerequisitos: ["DEBD130", "BIOL166"] },
+  { codigo: "MVET240", nombre: "Anatomía Clínica", semestre: 4, creditos: 13, prerequisitos: ["MVET632", "MVET633"] },
+  { codigo: "MVET641", nombre: "FDO II", semestre: 4, creditos: 24, prerequisitos: ["MVET633", "MVET631"] },
+
+  // 5° Semestre
+  { codigo: "DEBD160", nombre: "Biología de la Conservación", semestre: 5, creditos: 8, prerequisitos: ["DEBD140"] },
+  { codigo: "ING249", nombre: "Inglés IV", semestre: 5, creditos: 12, prerequisitos: ["ING239"] },
+  { codigo: "MVET192", nombre: "Farmacología", semestre: 5, creditos: 12, prerequisitos: ["MVET641"] },
+  { codigo: "MVET340", nombre: "EOA", semestre: 5, creditos: 7, prerequisitos: ["MVET631"] },
+  { codigo: "MVET651", nombre: "Anatomía Patológica", semestre: 5, creditos: 18, prerequisitos: ["MVET632", "MVET641"] },
+  { codigo: "MVET652", nombre: "Nutrición y Alimentación Animal", semestre: 5, creditos: 9, prerequisitos: ["MVET240"] },
+
+  // 6° Semestre
+  { codigo: "CEGCT12", nombre: "Razonamiento Científico", semestre: 6, creditos: 6, prerequisitos: ["CEGHC11"] },
+  { codigo: "MVET230", nombre: "Patología Clínica", semestre: 6, creditos: 21, prerequisitos: ["MVET178", "MVET641"] },
+  { codigo: "MVET310", nombre: "Imagenología", semestre: 6, creditos: 14, prerequisitos: ["MVET651"] },
+  { codigo: "MVET440", nombre: "Epidemiología y Salud Pública", semestre: 6, creditos: 13, prerequisitos: ["DEBD130", "MVET641"] },
+  { codigo: "MVET661", nombre: "Reproducción", semestre: 6, creditos: 12, prerequisitos: ["MVET633", "MVET632"] },
+
+  // 7° Semestre
+  { codigo: "DEBD161", nombre: "Manejo de Fauna Silvestre", semestre: 7, creditos: 6, prerequisitos: ["DEBD160", "MVET633"] },
+  { codigo: "IAMB662", nombre: "Legislación y Evaluación de Impacto Ambiental", semestre: 7, creditos: 9, prerequisitos: ["DEBD140", "DEBD160"] },
+  { codigo: "MVET671", nombre: "Inocuidad de los Alimentos", semestre: 7, creditos: 10, prerequisitos: ["MVET440"] },
+  { codigo: "MVET673", nombre: "Medicina", semestre: 7, creditos: 25, prerequisitos: ["MVET641", "MVET178", "MVET192"] },
+  { codigo: "MVET674", nombre: "Sistemas de Producción Animal", semestre: 7, creditos: 16, prerequisitos: ["MVET652", "MVET661", "MVET340"] },
+
+  // 8° Semestre
+  { codigo: "DEBD180", nombre: "Formulación y Evaluación de Proyectos en RRNN", semestre: 8, creditos: 8, prerequisitos: ["IAMB662"] },
+  { codigo: "MVET280", nombre: "Cirugía", semestre: 8, creditos: 18, prerequisitos: ["MVET673", "MVET310"] },
+  { codigo: "MVET370", nombre: "Zoonosis y Enfermedades Emergentes", semestre: 8, creditos: 8, prerequisitos: ["MVET671"] },
+  { codigo: "MVET681", nombre: "Patobiología Molecular", semestre: 8, creditos: 15, prerequisitos: ["MVET230"] },
+  { codigo: "MVET682", nombre: "Práctica Profesional", semestre: 8, creditos: 16, prerequisitos: ["MVET310", "MVET673"] },
+
+  // 9° Semestre
+  { codigo: "CEGPC13", nombre: "Pensamiento Crítico", semestre: 9, creditos: 5, prerequisitos: ["CEGCT12", "CEGHC11"] },
+  { codigo: "MVET691", nombre: "Ética y Bienestar Animal", semestre: 9, creditos: 7, prerequisitos: ["MVET674", "DEBD161"] },
+  { codigo: "MVET692", nombre: "Innovación y Transferencia Tecnológica", semestre: 9, creditos: 7, prerequisitos: ["DEBD180"] },
+  { codigo: "MVET693", nombre: "Clínica", semestre: 9, creditos: 39, prerequisitos: ["MVET280", "MVET230"] },
+  { codigo: "MVET694", nombre: "Proyecto de Título", semestre: 9, creditos: 13, prerequisitos: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"] },
+
+  // 10° Semestre
+  { codigo: "CEGRS14", nombre: "Responsabilidad Social", semestre: 10, creditos: 6, prerequisitos: ["CEGPC13"] },
+  { codigo: "MVET695", nombre: "Electivo Profesional I", semestre: 10, creditos: 15, prerequisitos: ["MVET370", "MVET681", "DEBD180", "MVET682", "MVET693"] },
+  { codigo: "MVET696", nombre: "Electivo Profesional II", semestre: 10, creditos: 15, prerequisitos: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"] },
+  { codigo: "MVET697", nombre: "Internado", semestre: 10, creditos: 22, prerequisitos: ["MVET693", "MVET691"] }
 ];
 
-const estadoRamos = {};
-const contenedor = document.getElementById("contenedor");
+const malla = document.getElementById("malla");
+const aprobados = new Set();
 
-const semestres = [...new Set(ramos.map(r => r.semestre))];
+function crearRamo(ramo) {
+  const div = document.createElement("div");
+  div.className = "ramo";
+  div.textContent = `${ramo.codigo}\n${ramo.nombre}`;
 
-semestres.forEach(sem => {
-  const semDiv = document.createElement("div");
-  semDiv.className = "semestre";
-  semDiv.innerHTML = `<h2>${sem}</h2>`;
-  const grid = document.createElement("div");
-  grid.className = "grid";
+  const bloqueado = ramo.prerequisitos.length > 0;
+  if (bloqueado) div.classList.add("bloqueado");
 
-  ramos.filter(r => r.semestre === sem).forEach(ramo => {
-    const div = document.createElement("div");
-    div.className = "ramo";
-    div.textContent = ramo.nombre;
-    div.id = ramo.codigo;
-    div.onclick = () => toggleRamo(ramo);
-    estadoRamos[ramo.codigo] = { aprobado: false, prereqs: ramo.prereqs };
-    grid.appendChild(div);
+  div.addEventListener("click", () => {
+    if (div.classList.contains("bloqueado")) return;
+
+    if (!div.classList.contains("aprobado")) {
+      div.classList.add("aprobado");
+      aprobados.add(ramo.codigo);
+    } else {
+      div.classList.remove("aprobado");
+      aprobados.delete(ramo.codigo);
+    }
+    actualizarEstado();
   });
 
-  semDiv.appendChild(grid);
-  contenedor.appendChild(semDiv);
-});
-
-function toggleRamo(ramo) {
-  const estado = estadoRamos[ramo.codigo];
-  const div = document.getElementById(ramo.codigo);
-  if (div.classList.contains("bloqueado")) return;
-
-  estado.aprobado = !estado.aprobado;
-  div.classList.toggle("aprobado", estado.aprobado);
-
-  actualizarEstado();
+  div.dataset.codigo = ramo.codigo;
+  div.dataset.prerequisitos = JSON.stringify(ramo.prerequisitos);
+  return div;
 }
 
 function actualizarEstado() {
-  ramos.forEach(ramo => {
-    const div = document.getElementById(ramo.codigo);
-    const estado = estadoRamos[ramo.codigo];
-    const requisitosCumplidos = estado.prereqs.every(pr => estadoRamos[pr]?.aprobado);
-    if (!estado.aprobado && !requisitosCumplidos) {
-      div.classList.add("bloqueado");
-    } else {
-      div.classList.remove("bloqueado");
+  document.querySelectorAll(".ramo").forEach(div => {
+    const prerequisitos = JSON.parse(div.dataset.prerequisitos);
+    const codigo = div.dataset.codigo;
+    const cumplidos = prerequisitos.every(pr => aprobados.has(pr));
+
+    if (!aprobados.has(codigo)) {
+      if (prerequisitos.length > 0) {
+        if (cumplidos) {
+          div.classList.remove("bloqueado");
+        } else {
+          div.classList.add("bloqueado");
+        }
+      }
     }
   });
 }
 
-actualizarEstado();
-```
+for (let semestre = 1; semestre <= 10; semestre++) {
+  const sem = ramos.filter(r => r.semestre === semestre);
+  sem.forEach(r => malla.appendChild(crearRamo(r)));
+}
