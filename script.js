@@ -51,6 +51,7 @@ const ramos = [
   { codigo: "MVET696", nombre: "Electivo Profesional II", prereqs: ["MVET370", "MVET280", "MVET681", "DEBD180", "MVET682"], semestre: "10° Semestre" },
   { codigo: "MVET697", nombre: "Internado", prereqs: ["MVET693", "MVET691"], semestre: "10° Semestre" }
 ];
+
 const estadoRamos = {};
 const contenedor = document.getElementById("contenedor");
 
